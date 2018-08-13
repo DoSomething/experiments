@@ -1,0 +1,6 @@
+{
+  "name": "dosomething-experiments",
+  "description": "DoSomething.org's Sixpack A/B testing server.",
+  "repository": "https://github.com/dosomething/experiments",
+  "image": "heroku/python"
+}
