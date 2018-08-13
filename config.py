@@ -1,5 +1,9 @@
 import os
 from urlparse import urlparse
+from dotenv import load_dotenv
+
+# Load '.env' if it exists.
+load_dotenv()
 
 #
 # We configure Sixpack using environment variables, rather than

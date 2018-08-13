@@ -23,6 +23,7 @@ MarkupSafe==1.0
 mock==1.0.1
 python-coveralls==2.4.3
 python-dateutil==1.5
+python-dotenv==0.9.1
 PyYAML==3.10
 redis==2.9.0
 repoze.lru==0.7
