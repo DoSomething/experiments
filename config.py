@@ -9,6 +9,10 @@ from urlparse import urlparse
 # For available environment variables: https://git.io/fNF62
 #
 
+# We protect the admin interface with HTTP Basic Auth:
+username = os.environ['ADMIN_USERNAME']
+password = os.environ['ADMIN_PASSWORD']
+
 # If using Heroku's Redis addon, parse 'REDIS_URL':
 if 'REDIS_URL' in os.environ:
     redis_endpoint = urlparse(os.environ.get('REDIS_URL'))

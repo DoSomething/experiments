@@ -7,8 +7,9 @@
 import config
 
 from routes import Mapper
-from sixpack.server import start as sixpack_api
 from sixpack.web import start as sixpack_web
+from sixpack.server import start as sixpack_api
+from werkzeug.wrappers import Request, Response
 
 class Application(object):
     def __init__(self):
@@ -21,12 +22,29 @@ class Application(object):
         # Map anything else to the Sixpack web interface.
         self.map.connect('web', '{any:.*?}', app=sixpack_web)
 
+    def authorized(self, environ):
+        request = Request(environ)
+        auth = request.authorization
+        return auth and auth.username == config.username and \
+            auth.password == config.password
+
+    def require_auth(self, environ, start_response):
+        response = Response('You need to log in to access that.', 401,
+                        {'WWW-Authenticate': 'Basic realm=sixpack'})
+        return response(environ, start_response)
+
     def __call__(self, environ, start_response):
-        match = self.map.routematch(environ=environ)
+        match, route = self.map.routematch(environ=environ)
 
-        if 'path_info' in match[0]:
-            environ['PATH_INFO'] = match[0]['path_info']
+        # If app is not being served from the root, set expected
+        # PATH_INFO (e.g. '/api/participate' to '/participate')
+        if 'path_info' in match:
+            environ['PATH_INFO'] = match['path_info']
 
-        return match[0]['app'](environ, start_response)
+        # If we're on the web interface, protect w/ basic auth.
+        if route.name == 'web' and not self.authorized(environ):
+            return self.require_auth(environ, start_response)
+
+        return match['app'](environ, start_response)
 
 app = Application()
