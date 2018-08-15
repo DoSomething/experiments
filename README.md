@@ -2,6 +2,10 @@
 
 This is the DoSomething.org experiments service, powered by [Sixpack](http://sixpack.seatgeek.com).
 
+## Usage
+
+See Sixpack's documentation for [API usage](https://github.com/sixpack/sixpack#using-the-api) & [clients](https://github.com/sixpack/sixpack#clients). Since we host both the web dashboard & API on a single domain, be sure to set your base URL to `/api`, e.g. http://experiments.dosomething.org/api :beers:
+
 ## Contributing
 
 Install [Python](https://www.python.org) and [VirtualEnv](https://virtualenv.pypa.io/en/stable/). You'll also need a local [Redis](https://redis.io) database.
