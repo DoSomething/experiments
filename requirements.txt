@@ -27,7 +27,7 @@ python-dotenv==0.9.1
 PyYAML==3.10
 redis==2.9.0
 repoze.lru==0.7
-requests==2.19.1
+requests==2.20.0
 Routes==2.4.1
 sh==1.12.14
 six==1.11.0
