@@ -35,5 +35,5 @@ Sixpack==2.7.0
 statsd==3.2.1
 urllib3==1.24.2
 webassets==0.12.1
-Werkzeug==0.9.1
+Werkzeug==0.15.3
 yuicompressor==2.4.7
